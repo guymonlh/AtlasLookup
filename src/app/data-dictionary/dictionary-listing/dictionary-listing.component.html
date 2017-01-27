@@ -1,0 +1,46 @@
+
+<!-- Three Line List with secondary info and action -->
+ 
+
+<div *ngIf="dataset">
+ 
+  <h4>{{dataset.DatasetBusinessName}}</h4>
+    <h6>Description</h6>
+    <p [innerHTML]="dataset.BusinessDescription"></p>
+
+
+    <h6 *ngIf="dataset.FilterDescription">Pre-Filtering Options</h6>
+    <p [innerHTML]="dataset.FilterDescription"></p>
+</div>
+ <h6></h6>
+<h4 style="margin-top: 50px">Dictionary Listing</h4>
+<span style="padding-right: 10px">
+    <span class="badge badge-info" style="height: 18px;width: 19px;text-align: center">D </span><span style="padding-left: 5px;;padding-right: 10px">= Dimension</span>
+    <span class="badge badge-info" style="height: 18px;width: 19px;text-align: center">M </span><span style="padding-left: 5px">= Measure</span>
+ </span>
+<div>
+  <story-filter-text   (changed)="filterChanged($event)"></story-filter-text>
+ 
+
+  <div class="mdl-grid" style="margin-top: -20px">
+      <div class="mdl-cell mdl-cell--4-col" style="border-bottom: lightgray 1px solid; padding:20px;margin-right: 20px" *ngFor="let dataset of filteredDatasetFields " >
+
+        <span class="mdl-list__item-primary-content" style="height: 400px;">
+          <div class="row" style="height: 25px;text-align: center">
+            <span *ngIf="dataset.FieldType=='Dimension'" class="badge badge-info" style="height: 18px;width: 19px;text-align: center">D </span>
+            <span *ngIf="dataset.FieldType=='Measure'" class="badge badge-info" style="height: 18px;width: 19px;text-align: center">M </span>
+            <span style="padding-left: 10px;"><h5>{{dataset.BusinessName}}</h5></span>
+          </div>
+            <div style="padding-left: 20px;padding-top: 5px">
+               {{dataset.BusinessDescription}}
+            </div>
+            <div  style="padding-left:20px;font-style: italic">
+             <strong >Example:</strong> {{dataset.Example}}
+            </div>
+          </span>  
+
+     </div>
+</div>
+
+</div>
+

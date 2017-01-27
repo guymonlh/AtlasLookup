@@ -1,0 +1,30 @@
+<div class="mdl-layout__header-row" style="background: rgb(0, 188, 212)">
+  <ul class="nav nav-list" >
+     <li class="dropdown" style="width: 400px;text-align: left; margin-left:-50px" >
+          <a href="#" style="color: white;font-size:18px;margin-right: -50px" class="dropdown-toggle" data-toggle="dropdown" 
+            role="button" aria-haspopup="true" aria-expanded="false">Data Dictionary List <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li class="nav-header" style="margin-left: 10px">Financial</li>
+            <li *ngFor="let dataset of datasets" (click)="onClick(dataset)">  <a style="color: black" routerLink="/data-dictionary/{{dataset.DatasetNameKey}}" class="nav-link" routerLinkActive="router-link-active" href="">{{dataset.DatasetBusinessName}}</a></li>
+          
+          </ul>
+     </li>
+  </ul>
+ </div>
+
+<div style="margin-left: 30px; margin-top: 10px" >
+
+ <!-- <div class="dropdown">
+    <button class="btn btn-primary dropdown-toggle" type="button" id="about-us" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      Data Dictionary List
+    </button>
+
+    <div class="dropdown-menu" aria-labelledby="about-us">
+      <a *ngFor="let dataset of datasets" routerLink="/data-dictionary/{{dataset.DatasetNameKey}}" class="nav-link" routerLinkActive="router-link-active" href="">{{dataset.DatasetBusinessName}}</a>
+    </div>
+  </div>-->
+
+  <div class="page-content">
+          <router-outlet></router-outlet>
+  </div>
+</div>
