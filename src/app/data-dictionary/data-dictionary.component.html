@@ -1,4 +1,4 @@
-<div class="mdl-layout__header-row" style="background: rgb(0, 188, 212)">
+<!--<div class="mdl-layout__header-row" style="background: rgb(0, 188, 212)">
   <ul class="nav nav-list" >
      <li class="dropdown" style="width: 400px;text-align: left; margin-left:-50px" >
           <a href="#" style="color: white;font-size:18px;margin-right: -50px" class="dropdown-toggle" data-toggle="dropdown" 
@@ -10,9 +10,30 @@
           </ul>
      </li>
   </ul>
- </div>
+ </div>-->
+<style>
+ .mdl-button--fab.mdl-button--colored:hover {
+    background-color: white;
+}
 
-<div style="margin-left: 30px; margin-top: 10px" >
+.mdl-button--fab.mdl-button--colored {
+    background: white;
+    color: #fff;
+}
+
+
+</style>
+
+<div  class="mdl-layout__header-row" style="background: rgb(0, 188, 212)">
+    <span style="margin-left: -60px;padding: 5px">
+        <button class="mdl-button mdl-js-button mdl-button--fab mdl-button--colored">
+            <img  src="./assets/Atlas.png"/>
+        </button>
+         <span style="color:white; margin-left:20px;font-size: 16pt;font-weight: bold">Data Dictionary Lookup</span>
+    </span>   
+</div>
+
+<!--<div style="margin-left: 30px; margin-top: 10px" >-->
 
  <!-- <div class="dropdown">
     <button class="btn btn-primary dropdown-toggle" type="button" id="about-us" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -23,8 +44,26 @@
       <a *ngFor="let dataset of datasets" routerLink="/data-dictionary/{{dataset.DatasetNameKey}}" class="nav-link" routerLinkActive="router-link-active" href="">{{dataset.DatasetBusinessName}}</a>
     </div>
   </div>-->
-
-  <div class="page-content">
+  
+  <!--<div class="page-content">
           <router-outlet></router-outlet>
   </div>
+</div>-->
+
+
+
+
+<div class="mdl-layout mdl-js-layout mdl-layout--fixed-drawer">
+  <div class="mdl-layout__drawer" style="margin-left: -30px;width: 300px">
+    <span class="mdl-layout-title">Finance</span>
+    <nav class="mdl-navigation">     
+       <a class="mdl-navigation__link" *ngFor="let dataset of datasets" routerLink="/data-dictionary/{{dataset.DatasetNameKey}}"  routerLinkActive="router-link-active" href="">{{dataset.DatasetBusinessName}}</a>
+    </nav>
+  </div>
+  <main class="mdl-layout__content" style="padding-left: 40px;padding-top: 10px">
+     <router-outlet></router-outlet>
+  </main>
 </div>
+  
+
+

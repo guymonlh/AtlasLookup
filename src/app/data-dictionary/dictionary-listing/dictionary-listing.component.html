@@ -4,22 +4,23 @@
 
 <div *ngIf="dataset">
  
-  <h4>{{dataset.DatasetBusinessName}}</h4>
-    <h6>Description</h6>
-    <p [innerHTML]="dataset.BusinessDescription"></p>
+      <h4>{{dataset.DatasetBusinessName}}</h4>
+        <h6>Description</h6>
+        <p [innerHTML]="dataset.BusinessDescription"></p>
 
 
-    <h6 *ngIf="dataset.FilterDescription">Pre-Filtering Options</h6>
-    <p [innerHTML]="dataset.FilterDescription"></p>
-</div>
- <h6></h6>
-<h4 style="margin-top: 50px">Dictionary Listing</h4>
-<span style="padding-right: 10px">
-    <span class="badge badge-info" style="height: 18px;width: 19px;text-align: center">D </span><span style="padding-left: 5px;;padding-right: 10px">= Dimension</span>
-    <span class="badge badge-info" style="height: 18px;width: 19px;text-align: center">M </span><span style="padding-left: 5px">= Measure</span>
- </span>
+        <h6 *ngIf="dataset.FilterDescription">Filters</h6>
+        <p [innerHTML]="dataset.FilterDescription"></p>
+    </div>
+    <h6></h6>
+    <h4 style="margin-top: 50px">Dictionary Listing</h4>
+    <span style="padding-right: 10px">
+        <span class="badge badge-info" style="height: 18px;width: 19px;text-align: center">D </span><span style="padding-left: 5px;;padding-right: 10px">= Dimension</span>
+        <span class="badge badge-info" style="height: 18px;width: 19px;text-align: center">M </span><span style="padding-left: 5px">= Measure</span>
+    </span>
+    <story-filter-text style="margin-left: -60px"  (changed)="filterChanged($event)"></story-filter-text>
 <div>
-  <story-filter-text   (changed)="filterChanged($event)"></story-filter-text>
+  
  
 
   <div class="mdl-grid" style="margin-top: -20px">
