@@ -6,14 +6,15 @@ import 'rxjs/add/operator/map';
 import { Observable } from 'rxjs/Observable';
 
 import { Dictionary, Dataset, DatasetField } from '../models/dictionary.model';
-import { CONFIG } from '../core/config'
+import { CONFIG } from '../core/config';
+import { environment } from '../../environments/environment';
 
 @Injectable()
 export class DictionaryService {
 
   private headers = new Headers({'Content-Type': 'application/json'});
-  private datasetsUrl = CONFIG.baseUrls.datasets;  // URL to web api
-  private datasetFieldUrl = CONFIG.baseUrls.datasetFields;
+  private datasetsUrl = environment.apiDomain + CONFIG.basePaths.datasets;  // URL to web api
+  private datasetFieldUrl = environment.apiDomain + CONFIG.basePaths.datasetFields;
 
   constructor(private http: Http) { }
 

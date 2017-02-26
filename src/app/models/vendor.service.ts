@@ -6,14 +6,15 @@ import 'rxjs/add/operator/map';
 import { Observable } from 'rxjs/Observable';
 
 import { Vendor, VendorSite } from '../models/vendor.model';
-import { CONFIG } from '../core/config'
+import { CONFIG } from '../core/config';
+import { environment } from '../../environments/environment';
 
 @Injectable()
 export class VendorService {
 
   private headers = new Headers({'Content-Type': 'application/json'});
-  private vendorsUrl = CONFIG.baseUrls.vendors;  // URL to web api
-  private vendorSitesUrl = CONFIG.baseUrls.vendorSites;
+  private vendorsUrl = environment.apiDomain + CONFIG.basePaths.vendors;  // URL to web api
+  private vendorSitesUrl = environment.apiDomain + CONFIG.basePaths.vendorSites;
 
   constructor(private http: Http) { }
 
