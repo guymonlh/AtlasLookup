@@ -38,16 +38,19 @@
     </span>   
 </div>
 <div>
-    <div>
-        <story-filter-text style="margin-left: -20px" (clicked)="filterChanged($event)"></story-filter-text> 
+    <div style="margin-left: 60px">
 
-        <span style="margin-left: 40px;margin-top: 20px" *ngIf="hasFirstSearch"><span><strong>Results:  </strong>{{filteredVendors.length}}</span></span>
+        <story-filter-text [showButton]=true  (clicked)="filterChanged($event)"></story-filter-text> 
+        <div style="margin-left: -10px;margin-top: -30px">(Enter Vendor Number or Vendor Name)</div>
 
+        <div style="margin-left: -10px;margin-top: 50px" *ngIf="hasFirstSearch"><span><strong>Results:  </strong>{{filteredVendors.length}}</span></div>
+    </div>
     <table class="table" style="width: 800px;margin-left: 40px;margin-top:20px"  *ngIf="filteredVendors?.length > 0">
         <thead>
           <tr>
             
             <td>Vendor Name</td>
+            <td></td>
             <td>Vendor Number</td>
             <td>Vendor Type</td>
             <td style="width: 120px;"></td>
@@ -55,23 +58,27 @@
         </thead>
         <tbody>
             <template ngFor let-vendor [ngForOf]="filteredVendors">
-                <tr >                  
+                <tr  [style.color]="vendor.InactiveDate ? 'red' : null">                  
                     <td>{{vendor.VendorName}}</td>
+                    <td><span *ngIf="vendor.InactiveDate">Inactive!</span></td>
                     <td>{{vendor.VendorNumber}}</td>
                     <td>{{vendor.VendorType}}</td>
-                    <td>
-                        <button style="color: rgb(0, 188, 212);margin-top:-5px" type="button" class="btn btn-default btn-md" *ngIf="vendor.Expanded == 1" (click)="vendor.Expanded = 0"> <span class="glyphicon glyphicon-chevron-down"></span> Sites </button>
-                        <button style="color: rgb(0, 188, 212);margin-top:-5px" type="button" class="btn btn-default btn-md" *ngIf="vendor.Expanded == 0" (click)="vendor.Expanded = 1"> <span class="glyphicon glyphicon-chevron-up"></span> Sites </button>                     
+                    <td> 
+                        <span *ngIf="vendor.VendorSites.results?.length > 0">
+                            <button style="color: rgb(0, 188, 212);margin-top:-5px" type="button" class="btn btn-default btn-md" *ngIf="vendor.Expanded == 1" (click)="vendor.Expanded = 0"> <span class="glyphicon glyphicon-chevron-down"></span> Sites </button>
+                            <button style="color: rgb(0, 188, 212);margin-top:-5px" type="button" class="btn btn-default btn-md" *ngIf="vendor.Expanded == 0" (click)="vendor.Expanded = 1"> <span class="glyphicon glyphicon-chevron-up"></span> Sites </button>                     
+                        </span> 
                     </td>
                 </tr>
 
                  <tr *ngIf="vendor.Expanded == 1">
                      <td colspan="3">
-                        <div *ngFor="let vendorSite of vendor.VendorSites.results">
-                                  <h4 class="title">{{vendorSite.VendorSite}} </h4>
-                                  <div class="summary">{{vendorSite.VendorSiteLine1}}</div>
-                                <div *ngIf="vendorSite.VendorSiteLine2">  {{vendorSite.VendorSiteLine2}}</div>
-                                 <div *ngIf="vendorSite.VendorSiteLine3">  {{vendorSite.VendorSiteLine3}}</div>                                 
+                        <div style="margin-bottom: 10px" *ngFor="let vendorSite of vendor.VendorSites.results">
+                                    <h4 class="title">{{vendorSite.VendorSite}} </h4>
+                                    <div class="summary">{{vendorSite.VendorSiteLine1}}</div>
+                                    <div *ngIf="vendorSite.VendorSiteLine2">  {{vendorSite.VendorSiteLine2}}</div>
+                                    <div *ngIf="vendorSite.VendorSiteLine3">  {{vendorSite.VendorSiteLine3}}</div> 
+                                    <div *ngIf="vendorSite.VendorSiteCity">  {{vendorSite.VendorSiteCity}} {{vendorSite.VendorSiteState}} {{vendorSite.VendorSiteProvince}} {{vendorSite.VendorSiteZipcode}}</div>                                 
                         </div>
                     </td>
                     <td></td>
@@ -82,44 +89,4 @@
       </table>
 
 
-
-
-
-
-
-
-
- 
-
-            <!--<span class="mdl-list__item-primary-content">
-                <div class="row" style="height: 25px;text-align: center">          
-                    <span style="padding-left: 10px;">{{vendor.VendorName}}</span>
-                </div>
-            </span>-->
-
-            <!--<div class="mdl-grid">
-                <div class="mdl-cell mdl-cell--6-col">
-                    <div class="mdl-grid">
-                        <div class="mdl-cell mdl-cell--6-col">{{vendor.VendorName}}</div>
-                        <div class="mdl-cell mdl-cell--2-col">{{vendor.VendorNumber}}</div>
-                        <div class="mdl-cell mdl-cell--3-col">  
-                            <button style="color: rgb(0, 188, 212)" class="mdl-button mdl-js-button mdl-button--primary" (click)="filterClicked($event)" > View Sites </button>
-                    </div>
-                </div>              
-            </div>
-            -->
-
-
-            <!--<span class="row" >
-                    <span class="mdl-card__title-text">{{vendor.VendorName}} </span> <span>{{vendor.VendorNumber}}</span>
-                    <span class="mdl-card__actions mdl-card--border">
-                        <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
-                        View Sites
-                        </a>
-                    </span>
-            </span>-->
-
-        <!--</div>  -->
-
-    </div>
 </div>

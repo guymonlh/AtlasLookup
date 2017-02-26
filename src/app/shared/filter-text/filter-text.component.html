@@ -1,10 +1,24 @@
-<div class="row" style="margin-left: 100px">
+<style>
+#myInput {
+  background-image: url('./assets/searchicon.png');
+  background-position: 5px 5px;
+  background-repeat: no-repeat;
+  width: 100%;
+  font-size: 16px;
+  padding: 5px 20px 5px 42px;
+  border: 1px solid #ddd;
+  margin-bottom: 12px;
+}
+</style>
+
+<div class="row">
   <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-    <label style="color: rgb(0, 188, 212)" class="mdl-textfield__label" for="filterText">Filter...</label>
-    <input  type="text" id="filterText" class="mdl-textfield__input" [(ngModel)]="filter" (keyup)="filterChanged($event)" style="color: rgb(0, 188, 212)"/>
+    <input type="text" id="myInput" placeholder="Search for..." [(ngModel)]="filter" (keyup)="filterChanged($event)" >
+    <!--<label style="color: rgb(0, 188, 212)" class="mdl-textfield__label" for="filterText">Filter...</label>
+    <input  type="text" id="filterText" class="mdl-textfield__input" [(ngModel)]="filter" (keyup)="filterChanged($event)" style="color: rgb(0, 188, 212)"/>-->
     
   </div>
-  <span style="margin-left: 20px;margin-top: 20px;margin-bottom: 0px;color: rgb(0, 188, 212)">
+  <span *ngIf="showButton" style="margin-left: 20px;margin-top: 20px;margin-bottom: 0px;color: rgb(0, 188, 212)">
     <button 
      style="color: rgb(0, 188, 212)" class="mdl-button mdl-js-button mdl-button--primary" (click)="filterClicked($event)" > Search </button>
   </span>

@@ -18,12 +18,15 @@
         <span class="badge badge-info" style="height: 18px;width: 19px;text-align: center">D </span><span style="padding-left: 5px;;padding-right: 10px">= Dimension</span>
         <span class="badge badge-info" style="height: 18px;width: 19px;text-align: center">M </span><span style="padding-left: 5px">= Measure</span>
     </span>
-    <story-filter-text style="margin-left: -60px"  (changed)="filterChanged($event)"></story-filter-text>
+    <div style="margin-left: 40px;margin-top: 10px">
+        <story-filter-text   (changed)="filterChanged($event)"></story-filter-text>
+    </div>
+    
 <div>
   
  
 
-  <div class="mdl-grid" style="margin-top: -20px">
+  <div class="mdl-grid" style="margin-top: -40px">
       <div class="mdl-cell mdl-cell--4-col" style="border-bottom: lightgray 1px solid; padding:20px;margin-right: 20px" *ngFor="let dataset of filteredDatasetFields " >
 
         <span class="mdl-list__item-primary-content" style="height: 400px;">

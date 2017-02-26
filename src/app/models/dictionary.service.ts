@@ -5,7 +5,7 @@ import 'rxjs/add/operator/toPromise';
 import 'rxjs/add/operator/map';
 import { Observable } from 'rxjs/Observable';
 
-import { Dataset, DatasetField } from '../models/dictionary.model';
+import { Dictionary, Dataset, DatasetField } from '../models/dictionary.model';
 import { CONFIG } from '../core/config'
 
 @Injectable()
@@ -17,9 +17,40 @@ export class DictionaryService {
 
   constructor(private http: Http) { }
 
+  getDictionaries(): Promise<Dictionary[]> {
+    var url =  `${this.datasetsUrl}?$orderby=SubjectArea,DatasetBusinessName`;
+    return this.http.get(url)
+               .toPromise()
+              // .then(response => response.json().d.results as Dictionary[])
+               .then( function(response) {
+                    var datasets = response.json().d.results as Dataset[];
+                    var dictionaries =  [] as Dictionary[];
+                    var dictionary = new Dictionary("");
+
+                        if (datasets.length > 0) {
+                          var subjectArea = "";
+
+                          datasets.forEach(
+                            function(dataset) {
+
+                              if (dataset.SubjectArea != subjectArea) {    
+                                subjectArea = dataset.SubjectArea;
+                                dictionary = new Dictionary(subjectArea);  
+                                dictionaries.push(dictionary);       
+                              } 
+                              dictionary.Datasets.push(dataset); 
+                          });
+
+                        }
+                        return dictionaries;
+
+               })
+               .catch(this.handleError);
+  }
+
   getDatasets(): Promise<Dataset[]> {
-    const url =  `${this.datasetsUrl}?$orderby=DatasetBusinessName`;
-    return this.http.get(this.datasetsUrl)
+    var url =  `${this.datasetsUrl}?$orderby=DatasetBusinessName`;
+    return this.http.get(url)
                .toPromise()
                .then(response => response.json().d.results as Dataset[])
                .catch(this.handleError);
@@ -29,7 +60,7 @@ export class DictionaryService {
    getDatasetFields(id: string): Promise<DatasetField[]> {
     //   const url =  `${this.datasetsUrl}('${id}')?$expand=DatasetFields($orderby=FieldType,BusinessName)`;
     //    const url =  `${this.datasetFieldUrl}?filter=DatasetNameKey eq '${id}'?$orderby=FieldType,BusinessName`;
-        const url =  `${this.datasetsUrl}('${id}')?$expand=DatasetFields`;
+        var url =  `${this.datasetsUrl}('${id}')?$expand=DatasetFields`;
         return this.http.get(url)
                .toPromise()
                .then(response => response.json().d.DatasetFields.results as DatasetField[])
@@ -39,7 +70,7 @@ export class DictionaryService {
   //todo:  Don't go out twice for this!
   getDataset(id: string): Promise<Dataset> {
        // const url =  `${this.datasetsUrl}('${id}')?$expand=DatasetFields&$select=DatasetBusinessName,BusinessDescription,FilterDescription,DatasetFields`;
-       const url =  `${this.datasetsUrl}('${id}')`;
+       var url =  `${this.datasetsUrl}('${id}')`;
        return this.http.get(url)
                .toPromise()
                .then(response => response.json().d as Dataset)
@@ -50,4 +81,5 @@ export class DictionaryService {
     console.error('An error occurred', error); // for demo purposes only
     return Promise.reject(error.message || error);
   }
+  
 }

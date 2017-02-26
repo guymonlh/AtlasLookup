@@ -37,7 +37,7 @@ export class DictionaryListingComponent implements OnInit {
       .switchMap((params: Params) => this.dictionaryService.getDatasetFields(params['id']))
       .subscribe( (datasetFields) => {  
         this.datasetFields = this.filteredDatasetFields = datasetFields;
-        console.log('datasetfields are:', this.datasetFields);
+        //console.log('datasetfields are:', this.datasetFields);
       }      );
   }
 
@@ -46,7 +46,7 @@ export class DictionaryListingComponent implements OnInit {
       .switchMap((params: Params) => this.dictionaryService.getDataset(params['id']))
       .subscribe( (dataset) => {  
         this.dataset = dataset;
-        console.log('dataset is', this.dataset);
+        //console.log('dataset is', this.dataset);
       }      );
   }
 

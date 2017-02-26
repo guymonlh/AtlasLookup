@@ -20,8 +20,8 @@ export class VendorService {
   getVendors(searchText: string): Promise<Vendor[]> {
     searchText = searchText.toUpperCase();
     console.log('searchtext:',searchText);
-   // const url =  `${this.vendorsUrl}?$filter=substringof('${searchText}',VendorName)&$expand=VendorSites`;
-    const url =  `${this.vendorsUrl}?$filter=substringof('${searchText}',VendorName)&$orderby=VendorName&$expand=VendorSites`;
+    //const url =  `${this.vendorsUrl}?$filter=substringof('${searchText}',VendorName)&$expand=VendorSites`;
+    const url =  `${this.vendorsUrl}?$filter=substringof('${searchText}',VendorName) or VendorNumber eq '${searchText}'&$orderby=VendorName&$expand=VendorSites`;
     return this.http.get(url)
                .toPromise()
                .then(response => response.json().d.results as Vendor[])
@@ -29,8 +29,8 @@ export class VendorService {
   }
 
   getVendorSites(id: string): Promise<VendorSite[]> {
-    //   const url =  `${this.datasetsUrl}('${id}')?$expand=DatasetFields($orderby=FieldType,BusinessName)`;
-    //   const url =  `${this.datasetFieldUrl}?filter=DatasetNameKey eq '${id}'?$orderby=FieldType,BusinessName`;
+        //const url =  `${this.datasetsUrl}('${id}')?$expand=DatasetFields($orderby=FieldType,BusinessName)`;
+        //const url =  `${this.datasetFieldUrl}?filter=DatasetNameKey eq '${id}'?$orderby=FieldType,BusinessName`;
         const url =  `${this.vendorsUrl}('${id}')?$expand=VendorSites`;
         return this.http.get(url)
                .toPromise()

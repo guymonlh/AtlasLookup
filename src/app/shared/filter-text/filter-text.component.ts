@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Output, Input } from '@angular/core';
 
 
 declare var componentHandler: any;  
@@ -11,9 +11,10 @@ declare var componentHandler: any;
 export class FilterTextComponent {
       @Output() changed: EventEmitter<string>;
       @Output() clicked: EventEmitter<string>;
+      @Input() showButton: boolean;
 
       filter: string;
-      showButton: true;
+     // showButton: boolean = false;
 
       constructor() {
         this.changed = new EventEmitter<string>();

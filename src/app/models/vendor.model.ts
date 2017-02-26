@@ -5,6 +5,7 @@ export class Vendor {
    VendorType: string;
    VendorName: string;
    Expanded:  number;
+   InactiveDate: Date;
    VendorSites: any;
 };
 
@@ -21,5 +22,5 @@ export class VendorSite {
    VendorSiteState: string;
    VendorSiteProvince: string;
    VendorSiteZipcode: string;
-   VendorSiteCountry: string;
+   VendorSiteCountry: string;   
 };

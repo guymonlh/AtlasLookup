@@ -1,3 +1,14 @@
+export class Dictionary {
+    constructor(subjectArea: string) {
+        this.SubjectArea = subjectArea;
+        this.Expanded = 0;
+        this.Datasets = [];
+    }
+    SubjectArea: string;
+    Expanded: number;
+    Datasets: Dataset[];
+}
+
 export class Dataset {
    constructor(   ) {}
    DatasetKey: number; 
