@@ -5,7 +5,7 @@ export class Vendor {
    VendorType: string;
    VendorName: string;
    Expanded:  number;
-   InactiveDate: Date;
+   Status: string;
    VendorSites: any;
 };
 

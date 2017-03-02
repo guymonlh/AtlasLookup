@@ -14,6 +14,7 @@ export class VendorService {
 
   private headers = new Headers({'Content-Type': 'application/json'});
   private vendorsUrl = environment.apiDomain + CONFIG.basePaths.vendors;  // URL to web api
+  //private vendorsUrl = 'http://hanadbt01.larimer.org:8001' + CONFIG.basePaths.vendors;  
   private vendorSitesUrl = environment.apiDomain + CONFIG.basePaths.vendorSites;
 
   constructor(private http: Http) { }

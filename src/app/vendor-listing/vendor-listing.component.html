@@ -58,9 +58,9 @@
         </thead>
         <tbody>
             <template ngFor let-vendor [ngForOf]="filteredVendors">
-                <tr  [style.color]="vendor.InactiveDate ? 'red' : null">                  
+                <tr  [style.color]="vendor.Status == 'Inactive' ? 'red' : null">                  
                     <td>{{vendor.VendorName}}</td>
-                    <td><span *ngIf="vendor.InactiveDate">Inactive!</span></td>
+                    <td><span *ngIf="vendor.Status == 'Inactive'">Inactive!</span></td>
                     <td>{{vendor.VendorNumber}}</td>
                     <td>{{vendor.VendorType}}</td>
                     <td> 
