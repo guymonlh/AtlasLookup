@@ -6,6 +6,12 @@ import { VendorService }        from '../models/vendor.service';
 import { FilterTextComponent }  from '../shared/filter-text/filter-text.component';
 import { FilterTextService }    from '../shared/filter-text/filter-text.service';
 
+// Import the Animations module
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+// Import the ButtonsModule
+import { ButtonsModule } from '@progress/kendo-angular-buttons';
+
 declare var componentHandler: any; 
 
 @Component({
@@ -38,6 +44,10 @@ export class VendorListingComponent implements OnInit {
         console.log('vendors are done',this.vendors);
         });
   }
+
+  onButtonClick() {
+    console.log('button clicked');
+}
 
   ngOnInit() {
       //componentHandler.upgradeDom();    

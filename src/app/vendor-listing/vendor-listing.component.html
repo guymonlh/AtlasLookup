@@ -39,8 +39,8 @@
 </div>
 <div>
     <div style="margin-left: 60px">
-
-        <story-filter-text [showButton]=true  (clicked)="filterChanged($event)"></story-filter-text> 
+        <button kendoButton (click)="onButtonClick()" [Primary]="true" >Search</button>
+        <!-- <story-filter-text [showButton]=true  (clicked)="filterChanged($event)"></story-filter-text>  -->
         <div style="margin-left: -10px;margin-top: -30px">(Enter Vendor Number or Vendor Name)</div>
 
         <div style="margin-left: -10px;margin-top: 50px" *ngIf="hasFirstSearch"><span><strong>Results:  </strong>{{filteredVendors.length}}</span></div>
@@ -57,7 +57,7 @@
           </tr>  
         </thead>
         <tbody>
-            <template ngFor let-vendor [ngForOf]="filteredVendors">
+            <ng-template ngFor let-vendor [ngForOf]="filteredVendors">
                 <tr  [style.color]="vendor.Status == 'Inactive' ? 'red' : null">                  
                     <td>{{vendor.VendorName}}</td>
                     <td><span *ngIf="vendor.Status == 'Inactive'">Inactive!</span></td>
@@ -84,7 +84,7 @@
                     <td></td>
                 </tr>
                
-            </template>
+            </ng-template>
         </tbody>
       </table>
 

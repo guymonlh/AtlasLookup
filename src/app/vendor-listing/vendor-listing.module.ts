@@ -7,6 +7,12 @@ import { VendorService} from '../models/vendor.service';
 
 import { VendorListingComponent } from './vendor-listing.component';
 
+//Import the Animations module
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+// Import the ButtonsModule
+import { ButtonsModule } from '@progress/kendo-angular-buttons';
+
 // in dashboard module
 const routes: Routes = [
   { path: '',  component: VendorListingComponent }
@@ -18,6 +24,10 @@ const routes: Routes = [
     CommonModule,
     SharedModule,
     RouterModule.forChild(routes),
+
+      // Register the modules
+      BrowserAnimationsModule,
+      ButtonsModule
   ],
   declarations: [ VendorListingComponent ],
   providers: [VendorService]
